@@ -14,3 +14,6 @@ tsconfig.tsbuildinfo
 
 # npm
 .npmrc
+
+# dev container
+.devcontainer

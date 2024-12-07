@@ -1,6 +1,6 @@
 {
-    "name": "@epaperjs/cli",
-    "version": "2.1.3",
+    "name": "@lukedevops/cli",
+    "version": "2.1.5",
     "private": false,
     "description": "CLI for rendering URL onto ePaper display on Raspberry Pi",
     "author": "samsonmking <samson@samsonmking.com>",
@@ -32,6 +32,7 @@
         "@epaperjs/rpi-2in13-bc": "workspace:^",
         "@epaperjs/rpi-2in13-v2": "workspace:^",
         "@epaperjs/rpi-4in2": "workspace:^",
+        "@lukedevops/rpi-4in26": "workspace:^",
         "@epaperjs/rpi-7in5-v2": "workspace:^",
         "@epaperjs/rpi-2in7": "workspace:^",
         "@epaperjs/rpi-3in7": "workspace:^"
@@ -40,6 +41,7 @@
         "@epaperjs/rpi-2in13-bc": "workspace:^",
         "@epaperjs/rpi-2in13-v2": "workspace:^",
         "@epaperjs/rpi-4in2": "workspace:^",
+        "@lukedevops/rpi-4in26": "workspace:^",
         "@epaperjs/rpi-7in5-v2": "workspace:^",
         "@epaperjs/rpi-2in7": "workspace:^",
         "@epaperjs/rpi-3in7": "workspace:^"
@@ -52,6 +54,9 @@
             "optional": true
         },
         "@epaperjs/rpi-4in2": {
+            "optional": true
+        },
+        "@lukedevops/rpi-4in26": {
             "optional": true
         },
         "@epaperjs/rpi-7in5-v2": {

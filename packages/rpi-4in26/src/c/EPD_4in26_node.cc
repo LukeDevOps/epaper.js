@@ -16,48 +16,48 @@ Napi::Value Init(const Napi::CallbackInfo& info) {
     if previously used in 4gray mode a residual image remains after init/clear/display in 1 Gray mode. 
     This will init as 4gray and clear it before init as 1gray mode ensuring a clear screen when entering 1 gray mode.
     */
-    EPD_4IN26_4Gray_Init();
-    EPD_4IN26_4Gray_Clear();
-    EPD_4IN26_1Gray_Init();
-    EPD_4IN26_Init_Fast();
+    EPD_4in26_Init_4GRAY();
+    EPD_4in26_Clear();
+    EPD_4in26_Init();
+    EPD_4in26_Init_Fast();
     return env.Undefined();
 }
 
 Napi::Value Init_4Gray(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
-    EPD_4IN26_Init_4Gray();
+    EPD_4in26_Init_4GRAY();
     return env.Undefined();
 }
 
 Napi::Value Display(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
     Napi::Buffer<uint8_t> jsBuffer = info[0].As<Napi::Buffer<uint8_t>>();
-    EPD_4IN26_1Gray_Display(reinterpret_cast<uint8_t *>(jsBuffer.Data()));
+    EPD_4in26_Display(reinterpret_cast<uint8_t *>(jsBuffer.Data()));
     return env.Undefined();
 }
 
 Napi::Value Display_4Gray(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
     Napi::Buffer<uint8_t> jsBuffer = info[0].As<Napi::Buffer<uint8_t>>();
-    EPD_4IN26_4Gray_Display(reinterpret_cast<uint8_t *>(jsBuffer.Data()));
+    EPD_4in26_4GrayDisplay(reinterpret_cast<uint8_t *>(jsBuffer.Data()));
     return env.Undefined();
 }
 
 Napi::Value Clear(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
-    EPD_4IN26_1Gray_Clear();
+    EPD_4in26_Clear();
     return env.Undefined();
 }
 
 Napi::Value Clear_4Gray(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
-    EPD_4IN26_4Gray_Clear();
+    EPD_4in26_Clear();
     return env.Undefined();
 }
 
 Napi::Value Sleep(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
-    EPD_4IN26_Sleep();
+    EPD_4in26_Sleep();
     return env.Undefined();
 }
 
