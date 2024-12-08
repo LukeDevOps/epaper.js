@@ -45,12 +45,12 @@ importers:
       '@epaperjs/rpi-4in2':
         specifier: workspace:^
         version: link:../rpi-4in2
-      '@epaperjs/rpi-4in26':
-        specifier: workspace:^
-        version: link:../rpi-4in26
       '@epaperjs/rpi-7in5-v2':
         specifier: workspace:^
         version: link:../rpi-7in5-v2
+      '@epaperjs/rpi-4in26':
+        specifier: workspace:^
+        version: link:../rpi-4in26
       '@types/yargs':
         specifier: ^17.0.7
         version: 17.0.7
