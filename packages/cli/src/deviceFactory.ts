@@ -16,6 +16,7 @@ const deviceMap = new Map<string, (orientation?: Orientation, colorMode?: ColorM
     ['rpi-2in13-v2', getRpi2in13V2],
     ['rpi-2in13-bc', getRpi2In13Bc],
     ['rpi-4in2', getRpi4In2],
+    ['rpi-4in26', getRpi4In26],
     ['rpi-7in5-v2', getRpi7in5V2],
     ['rpi-2in7', getRpi2In7],
     ['rpi-3in7', getRpi3In7],
@@ -47,6 +48,16 @@ async function getRpi4In2(orientation?: Orientation, colorMode?: ColorMode): Pro
         throw new Error('Failed to import @epaperjs/rpi-4in2, make sure it is installed');
     }
 }
+
+async function getRpi4In26(orientation?: Orientation, colorMode?: ColorMode): Promise<DisplayDevice> {
+    try {
+        const { Rpi4In26 } = await import('@epaperjs/rpi-4in26');
+        return new Rpi4In26(orientation, colorMode);
+    } catch (e) {
+        throw new Error('Failed to import @epaperjs/rpi-4in26, make sure it is installed');
+    }
+}
+
 
 async function getRpi7in5V2(orientation?: Orientation, colorMode?: ColorMode): Promise<DisplayDevice> {
     try {
