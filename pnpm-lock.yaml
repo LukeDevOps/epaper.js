@@ -24,32 +24,14 @@ importers:
   packages/cli:
     dependencies:
       '@epaperjs/core':
-        specifier: workspace:^
+        specifier: ^2.2.2
         version: link:../core
       yargs:
         specifier: ^17.3.0
         version: 17.3.0
     devDependencies:
-      '@epaperjs/rpi-2in13-bc':
-        specifier: workspace:^
-        version: link:../rpi-2in13-bc
-      '@epaperjs/rpi-2in13-v2':
-        specifier: workspace:^
-        version: link:../rpi-2in13-v2
-      '@epaperjs/rpi-2in7':
-        specifier: workspace:^
-        version: link:../rpi-2in7
-      '@epaperjs/rpi-3in7':
-        specifier: workspace:^
-        version: link:../rpi-3in7
-      '@epaperjs/rpi-4in2':
-        specifier: workspace:^
-        version: link:../rpi-4in2
-      '@epaperjs/rpi-7in5-v2':
-        specifier: workspace:^
-        version: link:../rpi-7in5-v2
-      '@epaperjs/rpi-4in26':
-        specifier: workspace:^
+      '@lukedevops/rpi-4in26':
+        specifier: ^2.0.5
         version: link:../rpi-4in26
       '@types/yargs':
         specifier: ^17.0.7
@@ -178,7 +160,7 @@ importers:
   packages/rpi-4in26:
     dependencies:
       '@epaperjs/core':
-        specifier: workspace:^
+        specifier: ^2.2.2
         version: link:../core
       bindings:
         specifier: ^1.5.0

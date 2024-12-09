@@ -1,6 +1,6 @@
 {
-    "name": "@epaperjs/cli",
-    "version": "2.1.5",
+    "name": "@lukedevops/cli",
+    "version": "2.1.6",
     "private": false,
     "description": "CLI for rendering URL onto ePaper display on Raspberry Pi",
     "author": "samsonmking <samson@samsonmking.com>",
@@ -21,7 +21,7 @@
         "url": "git+https://github.com/samsonmking/epaper.js.git"
     },
     "dependencies": {
-        "@epaperjs/core": "workspace:^",
+        "@epaperjs/core": "^2.2.2",
         "yargs": "^17.3.0"
     },
     "bugs": {
@@ -29,43 +29,13 @@
     },
     "devDependencies": {
         "@types/yargs": "^17.0.7",
-        "@epaperjs/rpi-2in13-bc": "workspace:^",
-        "@epaperjs/rpi-2in13-v2": "workspace:^",
-        "@epaperjs/rpi-4in2": "workspace:^",
-        "@epaperjs/rpi-4in26": "workspace:^",
-        "@epaperjs/rpi-7in5-v2": "workspace:^",
-        "@epaperjs/rpi-2in7": "workspace:^",
-        "@epaperjs/rpi-3in7": "workspace:^"
+        "@lukedevops/rpi-4in26": "^2.0.5"
     },
     "peerDependencies": {
-        "@epaperjs/rpi-2in13-bc": "workspace:^",
-        "@epaperjs/rpi-2in13-v2": "workspace:^",
-        "@epaperjs/rpi-4in2": "workspace:^",
-        "@epaperjs/rpi-4in26": "workspace:^",
-        "@epaperjs/rpi-7in5-v2": "workspace:^",
-        "@epaperjs/rpi-2in7": "workspace:^",
-        "@epaperjs/rpi-3in7": "workspace:^"
+        "@lukedevops/rpi-4in26": "^2.0.5"
     },
     "peerDependenciesMeta": {
-        "@epaperjs/rpi-2in13-bc": {
-            "optional": true
-        },
-        "@epaperjs/rpi-2in13-v2": {
-            "optional": true
-        },
-        "@epaperjs/rpi-4in2": {
-            "optional": true
-        },
-        "@epaperjs/rpi-4in26": {
-            "optional": true
-        },
-        "@epaperjs/rpi-7in5-v2": {
-            "optional": true
-        },
-        "@epaperjs/rpi-2in7": {
-            "optional": true
-        },
-        "@epaperjs/rpi-3in7": {
+        "@lukedevops/rpi-4in26": {
             "optional": true
         }
     }
