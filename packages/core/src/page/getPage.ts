@@ -7,7 +7,7 @@ export async function getPageRpi(width: number, height: number, logger?: Logger)
         executablePath: 'chromium-browser',
         args: ['--font-render-hinting=slight'],
     });
-    const context = await browser.createIncognitoBrowserContext();
+    const context = await browser.createBrowserContext();
     const browserPage = await context.newPage();
     await browserPage.setViewport({
         width,

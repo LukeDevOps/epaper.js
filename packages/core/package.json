@@ -1,6 +1,6 @@
 {
-    "name": "@epaperjs/core",
-    "version": "2.2.2",
+    "name": "@lukedevops/core",
+    "version": "2.2.4",
     "private": false,
     "description": "Core module providing image processing capability and API definitions for epaper.js",
     "author": "samsonmking <samson@samsonmking.com>",
@@ -13,6 +13,9 @@
     "files": [
         "lib"
     ],
+    "scripts": {
+        "build": "tsc"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/samsonmking/epaper.js.git"
@@ -28,7 +31,7 @@
     },
     "dependencies": {
         "pngjs": "^6.0.0",
-        "puppeteer-core": "15.1.0",
+        "puppeteer-core": "23.7.1",
         "tinycolor2": "^1.4.2"
     }
 }

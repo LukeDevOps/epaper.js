@@ -1,4 +1,4 @@
-import { DisplayDevice, Logger } from '@epaperjs/core';
+import { DisplayDevice, Logger } from '@lukedevops/core';
 import { getDevice } from '../deviceFactory';
 import { Command } from './command';
 
@@ -11,9 +11,9 @@ export class ClearCommand implements Command<BaseArgs> {
         const { deviceType } = clearArgs;
         this.displayDevice = await getDevice(deviceType);
         this.logger.log(`Connecting to ${deviceType} screen`);
-        this.displayDevice.connect();
+        this.displayDevice!.connect();
         this.logger.log('Clearing screen');
-        this.displayDevice.clear();
+        this.displayDevice!.clear();
     }
 
     public async dispose() {

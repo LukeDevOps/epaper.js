@@ -1,9 +1,9 @@
-import { ColorMode, DisplayDevice, Orientation } from '@epaperjs/core';
+import { ColorMode, DisplayDevice, Orientation, Logger } from '@lukedevops/core';
 
 export async function getDevice(
     deviceType: string,
     orientation?: Orientation,
-    colorMode?: ColorMode
+    colorMode?: ColorMode,
 ): Promise<DisplayDevice> {
     const factory = deviceMap.get(deviceType);
     if (factory) {
@@ -16,8 +16,11 @@ const deviceMap = new Map<string, (orientation?: Orientation, colorMode?: ColorM
     ['rpi-4in26', getRpi4In26]
 ]);
 
-async function getRpi4In26(orientation?: Orientation, colorMode?: ColorMode): Promise<DisplayDevice> {
+
+
+async function getRpi4In26(orientation?: Orientation, colorMode?: ColorMode, logger?: Logger): Promise<DisplayDevice> {
     try {
+        logger?.log("Connecting...")
         const { Rpi4In26 } = await import('@lukedevops/rpi-4in26');
         return new Rpi4In26(orientation, colorMode);
     } catch (e) {

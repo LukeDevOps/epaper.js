@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer-core';
+import {Browser, Page } from 'puppeteer-core';
 import { Logger } from '../logger';
 
 export interface ScreenshotOptions {
@@ -11,11 +11,11 @@ export class BrowserPage {
     private readonly HTTP_NOT_MODIFIED = 304;
 
     constructor(
-        private readonly browser: puppeteer.Browser,
-        private readonly browserPage: puppeteer.Page,
+        private readonly browser: Browser,
+        private readonly browserPage: Page,
         private readonly logger?: Logger
     ) {
-        this.browserPage.on('console', (msg) => {
+        this.browserPage.on('console', (msg: any) => {
             this.logger?.debug(`Browser console.${msg.type()}`, msg.text(), msg.stackTrace());
         });
     }
@@ -32,7 +32,7 @@ export class BrowserPage {
         }
         if (options.delay) {
             this.logger?.debug(`Waiting an additional ${options.delay}ms before taking screenshot`);
-            await this.browserPage.waitForTimeout(options.delay);
+            await new Promise(resolve => setTimeout(resolve, options.delay));
             this.logger?.debug('Screenshot delay complete');
         }
 
@@ -48,6 +48,6 @@ export class BrowserPage {
     }
 
     onConsoleLog(callback: (msg: string) => void) {
-        this.browserPage.on('console', (msg) => callback(msg.text()));
+        this.browserPage.on('console', (msg: any) => callback(msg.text()));
     }
 }

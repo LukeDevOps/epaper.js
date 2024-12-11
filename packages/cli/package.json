@@ -1,6 +1,6 @@
 {
     "name": "@lukedevops/cli",
-    "version": "2.1.6",
+    "version": "2.1.9",
     "private": false,
     "description": "CLI for rendering URL onto ePaper display on Raspberry Pi",
     "author": "samsonmking <samson@samsonmking.com>",
@@ -16,12 +16,15 @@
         "bin",
         "dist"
     ],
+    "scripts": {
+        "build": "tsc"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/samsonmking/epaper.js.git"
     },
     "dependencies": {
-        "@epaperjs/core": "^2.2.2",
+        "@lukedevops/core": "^2.2.2",
         "yargs": "^17.3.0"
     },
     "bugs": {

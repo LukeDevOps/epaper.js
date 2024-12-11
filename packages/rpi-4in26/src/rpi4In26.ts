@@ -1,5 +1,5 @@
-import { ColorMode, DisplayDevice, GrayLR, Monochrome, Orientation } from '@epaperjs/core';
-import { ImageOptions } from '@epaperjs/core/src/image/imageOptions';
+import { ColorMode, DisplayDevice, GrayLR, Monochrome, Orientation } from '@lukedevops/core';
+import { ImageOptions } from '@lukedevops/core/src/image/imageOptions';
 import bindings from 'bindings';
 import { Driver } from './driver';
 
@@ -14,12 +14,14 @@ export class Rpi4In26 implements DisplayDevice {
             throw new Error(`Only color modes: [${supportedColorModes}] are supported`);
         }
         this.driver = bindings('waveshare4in26.node');
-        this.height = this.orientation === Orientation.Horizontal ? 280 : 480;
-        this.width = this.orientation === Orientation.Horizontal ? 480 : 280;
+        this.height = this.orientation === Orientation.Horizontal ? 480 : 800;
+        this.width = this.orientation === Orientation.Horizontal ? 800 : 480;
     }
 
     public connect(): void {
+        console.log("attempting connection")
         this.driver.dev_init();
+        console.log("connected!")
         this.wake();
     }
 
@@ -29,10 +31,13 @@ export class Rpi4In26 implements DisplayDevice {
     }
 
     public wake(): void {
+        console.log("colorMode: " + this.colorMode)
         if (this.colorMode === ColorMode.Gray4) {
             this.driver.init_4Gray();
+            console.log("Initialised 4Gray mode")
         } else {
             this.driver.init();
+            console.log("Initialised")
         }
     }
 

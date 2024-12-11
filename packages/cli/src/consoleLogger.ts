@@ -1,4 +1,4 @@
-import { Logger } from '@epaperjs/core';
+import { Logger } from '@lukedevops/core';
 
 export class ConsoleLogger implements Logger {
     constructor(private readonly debugEnabled: boolean = false) {}

@@ -1,4 +1,4 @@
-import { ColorMode, Orientation, Logger } from '@epaperjs/core';
+import { ColorMode, Orientation, Logger } from '@lukedevops/core';
 import yargs, { Options, PositionalOptions } from 'yargs';
 import { DisplayArgs, DisplayCommand, RefreshArgs, RefreshCommand } from './commands';
 import { ClearCommand } from './commands/clear';

@@ -1,4 +1,4 @@
-import { ColorMode, DisplayDevice, getPageRpi, Orientation, BrowserPage, Logger } from '@epaperjs/core';
+import { ColorMode, DisplayDevice, getPageRpi, Orientation, BrowserPage, Logger } from '@lukedevops/core';
 import { getDevice } from '../deviceFactory';
 import { Command } from './command';
 
@@ -23,17 +23,17 @@ export class DisplayCommand implements Command<DisplayArgs> {
 
         this.logger.log(`Connecting to ${deviceType} screen`);
         this.displayDevice = await getDevice(deviceType, orientation, colorMode);
-        this.displayDevice.connect();
+        this.displayDevice?.connect();
         this.logger.log(`Connected`);
 
-        this.browserPage = await getPageRpi(this.displayDevice.width, this.displayDevice.height, this.logger);
+        this.browserPage = await getPageRpi(this.displayDevice!.width, this.displayDevice!.height);
         this.logger.log(`Displaying ${url}`);
         const imgOfUrl = await this.browserPage.screenshot(url, {
             delay: displayArgs.screenshotDelay,
             username: displayArgs.username,
             password: displayArgs.password,
         });
-        await this.displayDevice.displayPng(imgOfUrl, { dither });
+        await this.displayDevice!.displayPng(imgOfUrl, { dither });
     }
 
     public async dispose() {
