@@ -12,13 +12,6 @@ Napi::Number DEV_Init(const Napi::CallbackInfo& info) {
 
 Napi::Value Init(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
-    /*
-    if previously used in 4gray mode a residual image remains after init/clear/display in 1 Gray mode. 
-    This will init as 4gray and clear it before init as 1gray mode ensuring a clear screen when entering 1 gray mode.
-    */
-    EPD_4in26_Init_4GRAY();
-    EPD_4in26_Clear();
-    EPD_4in26_Init();
     EPD_4in26_Init_Fast();
     return env.Undefined();
 }
