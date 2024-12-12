@@ -108,20 +108,21 @@ int SYSFS_GPIO_Direction(int Pin, int Dir)
 }
 
 int SYSFS_GPIO_Read(int Pin)
+// Problem seems to be here, check pins are exported.
 {
     char path[DIR_MAXSIZ];
     char value_str[3];
     int fd;
-    
+    printf("Pin: %d\r\f", Pin);
     snprintf(path, DIR_MAXSIZ, "/sys/class/gpio/gpio%d/value", Pin);
     fd = open(path, O_RDONLY);
     if (fd < 0) {
-        SYSFS_GPIO_Debug( "Read failed Pin%d\n", Pin);
+        SYSFS_GPIO_Debug("Read failed Pin%d\n", Pin);
         return -1;
     }
 
     if (read(fd, value_str, 3) < 0) {
-        SYSFS_GPIO_Debug( "failed to read value!\n");
+        SYSFS_GPIO_Debug("failed to read value!\n");
         return -1;
     }
 

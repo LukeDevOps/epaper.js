@@ -1,6 +1,6 @@
 {
     "name": "@lukedevops/cli",
-    "version": "2.1.9",
+    "version": "2.1.10",
     "private": false,
     "description": "CLI for rendering URL onto ePaper display on Raspberry Pi",
     "author": "samsonmking <samson@samsonmking.com>",
@@ -32,10 +32,10 @@
     },
     "devDependencies": {
         "@types/yargs": "^17.0.7",
-        "@lukedevops/rpi-4in26": "^2.0.5"
+        "@lukedevops/rpi-4in26": "^2.0.22"
     },
     "peerDependencies": {
-        "@lukedevops/rpi-4in26": "^2.0.5"
+        "@lukedevops/rpi-4in26": "^2.0.22"
     },
     "peerDependenciesMeta": {
         "@lukedevops/rpi-4in26": {

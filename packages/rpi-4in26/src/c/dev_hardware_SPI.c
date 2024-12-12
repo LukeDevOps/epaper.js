@@ -350,9 +350,10 @@ int DEV_HARDWARE_SPI_Transfer(uint8_t *buf, uint32_t len)
     tr.len = len;
     tr.tx_buf =  (unsigned long)buf;
     tr.rx_buf =  (unsigned long)buf;
-    
+    printf("SPI transfer...\n");
     //ioctl Operation, transmission of data
     if (ioctl(hardware_SPI.fd, SPI_IOC_MESSAGE(1), &tr)  < 1 ){  
+        printf("Couldn't complete SPI transfer...\n");
         DEV_HARDWARE_SPI_Debug("can't send spi message\r\n"); 
         return -1;
     }

@@ -24,6 +24,6 @@ async function getRpi4In26(orientation?: Orientation, colorMode?: ColorMode, log
         const { Rpi4In26 } = await import('@lukedevops/rpi-4in26');
         return new Rpi4In26(orientation, colorMode);
     } catch (e) {
-        throw new Error('Failed to import @epaperjs/rpi-4in26, make sure it is installed');
+        throw new Error('Failed to import @lukedevops/rpi-4in26, make sure it is installed');
     }
 }

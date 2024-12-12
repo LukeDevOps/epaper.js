@@ -31,10 +31,10 @@ export class Rpi4In26 implements DisplayDevice {
     }
 
     public wake(): void {
-        console.log("colorMode: " + this.colorMode)
+        console.log("colorMode is: " + this.colorMode)
         if (this.colorMode === ColorMode.Gray4) {
+            console.log("Initialising 4Gray mode")
             this.driver.init_4Gray();
-            console.log("Initialised 4Gray mode")
         } else {
             this.driver.init();
             console.log("Initialised")

@@ -107,7 +107,9 @@ parameter:
 ******************************************************************************/
 void EPD_4in26_ReadBusy(void)
 {
-    Debug("e-Paper busy\r\n");
+	int busy_state = DEV_Digital_Read(EPD_BUSY_PIN);
+	printf("Initial busy state: %d\r\n", busy_state);
+    printf("e-Paper busy\r\n");
 	while(1)
 	{	 //=1 BUSY
 		if(DEV_Digital_Read(EPD_BUSY_PIN)==0) 
@@ -115,7 +117,7 @@ void EPD_4in26_ReadBusy(void)
 		DEV_Delay_ms(20);
 	}
 	DEV_Delay_ms(20);
-    Debug("e-Paper busy release\r\n");
+    printf("e-Paper busy release\r\n");
 }
 
 /******************************************************************************
@@ -220,57 +222,75 @@ void EPD_4in26_Init(void)
 {
 	EPD_4in26_Reset();
 	DEV_Delay_ms(100);
+	printf("Check 1");
 
-	EPD_4in26_ReadBusy();   
+	EPD_4in26_ReadBusy();
+	printf("Check 1a");
+   
 	EPD_4in26_SendCommand(0x12);  //SWRESET
+		printf("Check 1b");
+
 	EPD_4in26_ReadBusy();   
-	
+		printf("Check 1c");
+
 	EPD_4in26_SendCommand(0x18); // use the internal temperature sensor
-	EPD_4in26_SendData(0x80);
+		printf("Check 1d");
 
-	EPD_4in26_SendCommand(0x0C); //set soft start     
+	EPD_4in26_SendData(0x80);
+	printf("Check 1e");
+
+	EPD_4in26_SendCommand(0x0C); //set soft start   
+		printf("Check 1f");
+  
 	EPD_4in26_SendData(0xAE);
-	EPD_4in26_SendData(0xC7);
-	EPD_4in26_SendData(0xC3);
-	EPD_4in26_SendData(0xC0);
-	EPD_4in26_SendData(0x80);
+		printf("Check 1g");
 
+	EPD_4in26_SendData(0xC7);
+		printf("Check 1h");
+
+	EPD_4in26_SendData(0xC3);
+		printf("Check 1i");
+
+	EPD_4in26_SendData(0xC0);
+		printf("Check 1j");
+
+	EPD_4in26_SendData(0x80);
+	printf("Check 2");
 	EPD_4in26_SendCommand(0x01);   //      drive output control    
 	EPD_4in26_SendData((EPD_4in26_HEIGHT-1)%256); //  Y  
 	EPD_4in26_SendData((EPD_4in26_HEIGHT-1)/256); //  Y 
 	EPD_4in26_SendData(0x02);
+	printf("Check 3");
 
 	EPD_4in26_SendCommand(0x3C);        // Border       Border setting 
 	EPD_4in26_SendData(0x01);
+	printf("Check 4");
 
 	EPD_4in26_SendCommand(0x11);        //    data  entry  mode
 	EPD_4in26_SendData(0x01);           //       X-mode  x+ y-    
+	printf("Check 5");
 
 	EPD_4in26_SetWindows(0, EPD_4in26_HEIGHT-1, EPD_4in26_WIDTH-1, 0);
+	printf("Check 6");
 
 	EPD_4in26_SetCursor(0, 0);
+	printf("Check 7");
 
 	EPD_4in26_ReadBusy();
+	printf("Check 8");
 }
 
 void EPD_4in26_Init_Fast(void)
 {
-	printf("1");
 	EPD_4in26_Reset();
 	DEV_Delay_ms(100);
-
-	printf("2");
 
 	EPD_4in26_ReadBusy();   
 	EPD_4in26_SendCommand(0x12);  //SWRESET
 	EPD_4in26_ReadBusy();   
-
-	printf("3");
 	
 	EPD_4in26_SendCommand(0x18); // use the internal temperature sensor
 	EPD_4in26_SendData(0x80);
-
-	printf("4");
 
 	EPD_4in26_SendCommand(0x0C); //set soft start     
 	EPD_4in26_SendData(0xAE);
@@ -279,46 +299,33 @@ void EPD_4in26_Init_Fast(void)
 	EPD_4in26_SendData(0xC0);
 	EPD_4in26_SendData(0x80);
 
-	printf("5");
-
 	EPD_4in26_SendCommand(0x01);   //      drive output control    
 	EPD_4in26_SendData((EPD_4in26_HEIGHT-1)%256); //  Y  
 	EPD_4in26_SendData((EPD_4in26_HEIGHT-1)/256); //  Y 
 	EPD_4in26_SendData(0x02);
 
-	printf("6");
-
 	EPD_4in26_SendCommand(0x3C);        // Border       Border setting 
 	EPD_4in26_SendData(0x01);
-
-	printf("7");
 
 	EPD_4in26_SendCommand(0x11);        //    data  entry  mode
 	EPD_4in26_SendData(0x01);           //       X-mode  x+ y-    
 
-	printf("8");
-
 	EPD_4in26_SetWindows(0, EPD_4in26_HEIGHT-1, EPD_4in26_WIDTH-1, 0);
-	printf("9");
 
 	EPD_4in26_SetCursor(0, 0);
-	printf("10");
 
 	EPD_4in26_ReadBusy();
-	printf("11");
+
 	//TEMP (1.5s)
 	EPD_4in26_SendCommand(0x1A);  
     EPD_4in26_SendData(0x5A); 
-	printf("12");
 
 	// It's getting stuck here...
     EPD_4in26_SendCommand(0x22);  
     EPD_4in26_SendData(0x91); 
     EPD_4in26_SendCommand(0x20); 
-	printf("13");
 	
 	EPD_4in26_ReadBusy();
-	printf("14");
 }
 
 void EPD_4in26_Init_4GRAY(void)
