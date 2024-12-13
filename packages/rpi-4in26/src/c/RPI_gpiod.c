@@ -47,8 +47,9 @@ int GPIOD_Export()
     char buffer[NUM_MAXBUF];
     FILE *fp;
 
-    fp = popen("cat /proc/cpuinfo | grep 'Raspberry Pi 5'", "r");
+    fp = popen("cat /proc/cpuinfo | grep 'Raspberry Pi Zero'", "r");
     if (fp == NULL) {
+        printf("It is not possible to determine the model of the Raspberry PI\n");
         GPIOD_Debug("It is not possible to determine the model of the Raspberry PI\n");
         return -1;
     }
@@ -58,6 +59,7 @@ int GPIOD_Export()
         gpiochip = gpiod_chip_open("/dev/gpiochip4");
         if (gpiochip == NULL)
         {
+            printf( "gpiochip4 Export Failed\n");
             GPIOD_Debug( "gpiochip4 Export Failed\n");
             return -1;
         }
@@ -67,6 +69,7 @@ int GPIOD_Export()
         gpiochip = gpiod_chip_open("/dev/gpiochip0");
         if (gpiochip == NULL)
         {
+            printf( "gpiochip0 Export Failed\n");
             GPIOD_Debug( "gpiochip0 Export Failed\n");
             return -1;
         }

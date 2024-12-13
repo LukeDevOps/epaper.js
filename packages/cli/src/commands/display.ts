@@ -32,6 +32,7 @@ export class DisplayCommand implements Command<DisplayArgs> {
             delay: displayArgs.screenshotDelay,
             username: displayArgs.username,
             password: displayArgs.password,
+            
         });
         await this.displayDevice!.displayPng(imgOfUrl, { dither });
     }

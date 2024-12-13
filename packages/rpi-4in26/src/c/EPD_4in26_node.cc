@@ -39,6 +39,7 @@ Napi::Value Display_4Gray(const Napi::CallbackInfo& info) {
 Napi::Value Clear(const Napi::CallbackInfo& info) {
     Napi::Env env = info.Env();
     EPD_4in26_Clear();
+    printf("Clearing complete");
     return env.Undefined();
 }
 

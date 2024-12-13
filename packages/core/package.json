@@ -1,6 +1,6 @@
 {
     "name": "@lukedevops/core",
-    "version": "2.2.4",
+    "version": "2.2.5",
     "private": false,
     "description": "Core module providing image processing capability and API definitions for epaper.js",
     "author": "samsonmking <samson@samsonmking.com>",
@@ -14,7 +14,9 @@
         "lib"
     ],
     "scripts": {
-        "build": "tsc"
+        "clean": "tsc --build --clean",
+        "build": "tsc --build",
+        "build:clean": "pnpm clean && pnpm build"
     },
     "repository": {
         "type": "git",

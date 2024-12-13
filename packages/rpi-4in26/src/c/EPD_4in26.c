@@ -108,16 +108,9 @@ parameter:
 ******************************************************************************/
 void EPD_4in26_ReadBusy(void)
 {
-	int busy_state = DEV_Digital_Read(EPD_BUSY_PIN);
-	printf("Initial busy state: %d\r\n", busy_state);
     printf("e-Paper busy\r\n");
-	unsigned int loop_counter = 0;
 	while(1)
 	{	 //=1 BUSY
-		if(loop_counter == 150)
-			printf("Pin stayed busy - exiting...\n");
-			exit(EXIT_FAILURE);
-		loop_counter+=1;
 		if(DEV_Digital_Read(EPD_BUSY_PIN)==0) 
 			break;
 		DEV_Delay_ms(20);
@@ -228,62 +221,44 @@ void EPD_4in26_Init(void)
 {
 	EPD_4in26_Reset();
 	DEV_Delay_ms(100);
-	printf("Check 1");
 
 	EPD_4in26_ReadBusy();
-	printf("Check 1a");
    
 	EPD_4in26_SendCommand(0x12);  //SWRESET
-		printf("Check 1b");
 
 	EPD_4in26_ReadBusy();   
-		printf("Check 1c");
 
 	EPD_4in26_SendCommand(0x18); // use the internal temperature sensor
-		printf("Check 1d");
 
 	EPD_4in26_SendData(0x80);
-	printf("Check 1e");
 
 	EPD_4in26_SendCommand(0x0C); //set soft start   
-		printf("Check 1f");
   
 	EPD_4in26_SendData(0xAE);
-		printf("Check 1g");
 
 	EPD_4in26_SendData(0xC7);
-		printf("Check 1h");
 
 	EPD_4in26_SendData(0xC3);
-		printf("Check 1i");
 
 	EPD_4in26_SendData(0xC0);
-		printf("Check 1j");
 
 	EPD_4in26_SendData(0x80);
-	printf("Check 2");
 	EPD_4in26_SendCommand(0x01);   //      drive output control    
 	EPD_4in26_SendData((EPD_4in26_HEIGHT-1)%256); //  Y  
 	EPD_4in26_SendData((EPD_4in26_HEIGHT-1)/256); //  Y 
 	EPD_4in26_SendData(0x02);
-	printf("Check 3");
 
 	EPD_4in26_SendCommand(0x3C);        // Border       Border setting 
 	EPD_4in26_SendData(0x01);
-	printf("Check 4");
 
 	EPD_4in26_SendCommand(0x11);        //    data  entry  mode
 	EPD_4in26_SendData(0x01);           //       X-mode  x+ y-    
-	printf("Check 5");
 
 	EPD_4in26_SetWindows(0, EPD_4in26_HEIGHT-1, EPD_4in26_WIDTH-1, 0);
-	printf("Check 6");
 
 	EPD_4in26_SetCursor(0, 0);
-	printf("Check 7");
 
 	EPD_4in26_ReadBusy();
-	printf("Check 8");
 }
 
 void EPD_4in26_Init_Fast(void)
@@ -392,6 +367,7 @@ void EPD_4in26_Clear(void)
 	{
 	    EPD_4in26_SendData2(image, width);
 	}
+
 
 	EPD_4in26_SendCommand(0x26);   //write RAM for black(0)/white (1)
 	for(i=0; i<height; i++)

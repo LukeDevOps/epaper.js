@@ -18,6 +18,7 @@
                 "RPI",
                 "USE_DEV_LIB",
                 "DEBUG",
+                "GPIOD_Debug"
             ],
             "include_dirs": [
                 "<!@(node -p \"require('node-addon-api').include\")"

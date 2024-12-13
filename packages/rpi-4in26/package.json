@@ -1,6 +1,6 @@
 {
     "name": "@lukedevops/rpi-4in26",
-    "version": "2.0.54",
+    "version": "2.0.66",
     "private": false,
     "description": "ePaper.js support for Waveshare 4.26\" display",
     "author": "samsonmking <samson@samsonmking.com>",
@@ -27,7 +27,7 @@
         "publishlib": "pnpm clean && pnpm build && pnpm version patch && npm publish --ignore-scripts"
     },
     "dependencies": {
-        "@lukedevops/core": "^2.2.2",
+        "@lukedevops/core": "latest",
         "bindings": "^1.5.0",
         "node-addon-api": "^4.2.0",
         "node-gyp": "^8.4.1"
