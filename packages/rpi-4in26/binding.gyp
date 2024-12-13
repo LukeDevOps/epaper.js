@@ -12,19 +12,19 @@
                 "./src/c/DEV_Config.c",
                 "./src/c/EPD_4in26.c",
                 "./src/c/dev_hardware_SPI.c",
-                "./src/c/RPI_sysfs_gpio.c",
+                "./src/c/RPI_gpiod.c",
             ],
             "defines": [
                 "RPI",
                 "USE_DEV_LIB",
                 "DEBUG",
-                "SYSFS_GPIO_DEBUG"
             ],
             "include_dirs": [
                 "<!@(node -p \"require('node-addon-api').include\")"
             ],
             "libraries": [
-                "-lm"
+                "-lm",
+                "-lgpiod"
             ]
         }
     ]

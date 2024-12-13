@@ -30,6 +30,7 @@
 ******************************************************************************/
 #include "EPD_4in26.h"
 #include "Debug.h"
+#include "stdlib.h"
 
 const unsigned char LUT_DATA_4Gray[112] =    //112bytes
 {											
@@ -110,8 +111,13 @@ void EPD_4in26_ReadBusy(void)
 	int busy_state = DEV_Digital_Read(EPD_BUSY_PIN);
 	printf("Initial busy state: %d\r\n", busy_state);
     printf("e-Paper busy\r\n");
+	unsigned int loop_counter = 0;
 	while(1)
 	{	 //=1 BUSY
+		if(loop_counter == 150)
+			printf("Pin stayed busy - exiting...\n");
+			exit(EXIT_FAILURE);
+		loop_counter+=1;
 		if(DEV_Digital_Read(EPD_BUSY_PIN)==0) 
 			break;
 		DEV_Delay_ms(20);

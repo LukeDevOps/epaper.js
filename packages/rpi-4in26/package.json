@@ -1,6 +1,6 @@
 {
     "name": "@lukedevops/rpi-4in26",
-    "version": "2.0.36",
+    "version": "2.0.54",
     "private": false,
     "description": "ePaper.js support for Waveshare 4.26\" display",
     "author": "samsonmking <samson@samsonmking.com>",
@@ -23,7 +23,8 @@
         "configure": "node-gyp configure",
         "build": "tsc --build && node-gyp rebuild",
         "clean": "tsc --build --clean && node-gyp clean",
-        "build:clean": "pnpm clean && pnpm build"
+        "build:clean": "pnpm clean && pnpm build",
+        "publishlib": "pnpm clean && pnpm build && pnpm version patch && npm publish --ignore-scripts"
     },
     "dependencies": {
         "@lukedevops/core": "^2.2.2",
