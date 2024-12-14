@@ -61,7 +61,7 @@ export class Rpi4In26 implements DisplayDevice {
         const converter = new Monochrome(img);
         const blackBuffer = await converter.toBlack({
             ...options,
-            rotate90Degrees: this.orientation === Orientation.Horizontal,
+            rotate90Degrees: this.orientation === Orientation.Vertical,
         });
         this.driver.display(blackBuffer);
     }
@@ -70,7 +70,7 @@ export class Rpi4In26 implements DisplayDevice {
         const converter = new GrayLR(img);
         const grayBuffer = await converter.to4Gray({
             ...options,
-            rotate90Degrees: this.orientation === Orientation.Horizontal,
+            rotate90Degrees: this.orientation === Orientation.Vertical,
         });
         this.driver.display_4Gray(grayBuffer);
     }
