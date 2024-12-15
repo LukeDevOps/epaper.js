@@ -58,6 +58,7 @@ export class Rpi4In26 implements DisplayDevice {
     }
 
     private async displayPngBW(img: Buffer, options?: ImageOptions) {
+        console.log("Displaying BW");
         const converter = new Monochrome(img);
         const blackBuffer = await converter.toBlack({
             ...options,
@@ -67,6 +68,7 @@ export class Rpi4In26 implements DisplayDevice {
     }
 
     private async displayPngGray4(img: Buffer, options?: ImageOptions) {
+        console.log("Displaying 4Gray");
         const converter = new GrayLR(img);
         const grayBuffer = await converter.to4Gray({
             ...options,

@@ -1,6 +1,6 @@
 {
     "name": "@lukedevops/cli",
-    "version": "2.1.10",
+    "version": "2.1.11",
     "private": false,
     "description": "CLI for rendering URL onto ePaper display on Raspberry Pi",
     "author": "samsonmking <samson@samsonmking.com>",
@@ -17,7 +17,9 @@
         "dist"
     ],
     "scripts": {
-        "build": "tsc"
+        "clean": "tsc --build --clean",
+        "build": "tsc --build",
+        "build:clean": "pnpm clean && pnpm build"
     },
     "repository": {
         "type": "git",
