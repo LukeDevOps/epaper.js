@@ -36,12 +36,6 @@ export class BrowserPage {
             this.logger?.debug('Screenshot delay complete');
         }
 
-        await this.browserPage.screenshot({
-            type: 'png',
-            fullPage: false,
-            path: 'Pictures/screenshot.png'
-        })
-
         return (await this.browserPage.screenshot({
             type: 'png',
             fullPage: false,

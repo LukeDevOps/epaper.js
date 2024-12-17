@@ -23,6 +23,11 @@ const intervalArgs: Options = {
     describe: 'amount of time in seconds between refreshes (defaults to 10 min)',
 };
 
+const loopsArgs: Options = {
+    number: true, 
+    describe: 'Number of times to loop the screen grab before exiting (defaults to 6, use 0 for infinite)'
+}
+
 const deviceTypeArgs: PositionalOptions = {
     describe: 'The type of screen connected to your device',
     type: 'string',
@@ -88,6 +93,7 @@ export function cli(processArgs: string[]) {
             (yargs) => {
                 yargs
                     .option('interval', intervalArgs)
+                    .option('loops', loopsArgs)
                     .option('orientation', orientationArgs)
                     .option('colorMode', colorArgs)
                     .option('debug', debugArgs)
