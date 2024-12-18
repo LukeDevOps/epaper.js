@@ -1,6 +1,6 @@
 {
     "name": "@lukedevops/cli",
-    "version": "2.1.13",
+    "version": "2.1.15",
     "private": false,
     "description": "CLI for rendering URL onto ePaper display on Raspberry Pi",
     "author": "samsonmking <samson@samsonmking.com>",

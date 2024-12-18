@@ -62,6 +62,7 @@ ejs refresh [options] <deviceType> <url>
 | `-i / --interval`    | Amount of time between refreshes                                                                       | Time in seconds (default 10 min) |
 | `-o / --orientation` | Use (h)orizontal or (v)ertical orientation                                                             | `[h, v]`                         |
 | `-c / --colorMode`   | Desired color mode                                                                                     | `[black, 4gray, red]`            |
+| `--loop`             | Number of times to loop (0 is infinite, 6 is default)                                                  | number                           |
 | `--screenshotDelay`  | Wait an additional amount of time after loading the URL before displaying. Useful for client side apps | Time in milliseconds             |
 | `--dither`           | Use a dithering algorithm to approximate grayscale / mid-tones on black and white displays             |                                  |
 | `--username`         | Username for basic authentication                                                                      | username as string               |

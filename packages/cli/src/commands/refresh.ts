@@ -8,12 +8,6 @@ export interface RefreshArgs extends DisplayArgs {
     loops?: number;
 }
 
-interface LoopArgs {
-    browserPage?: BrowserPage
-    refreshArgs: RefreshArgs
-    displayDevice?: DisplayDevice
-}
-
 export class RefreshCommand implements Command<RefreshArgs> {
     private displayDevice?: DisplayDevice;
     private browserPage?: BrowserPage;
@@ -26,48 +20,41 @@ export class RefreshCommand implements Command<RefreshArgs> {
         this.displayDevice.connect();
         this.logger.log(`Connected`);
         this.browserPage = await getPageRpi(this.displayDevice.width, this.displayDevice.height, this.logger);
-        const loopArgs = {browserPage: this.browserPage, refreshArgs, displayDevice: this.displayDevice}
-        this.loopExecutor(loopArgs)
+        await this.loopExecutor(refreshArgs, refreshArgs.loops)
     }
 
     public async dispose() {
         this.logger.log('Powering off display and exiting...');
-        this.displayDevice?.disconnect();
-        await this.browserPage?.close();
+        this.displayDevice!.disconnect();
+        await this.browserPage!.close();
     }
 
-    private async loopCallback(args: LoopArgs) {
-        const imgOfUrl = await args.browserPage?.screenshot(args.refreshArgs.url, {
-            delay: args.refreshArgs.screenshotDelay,
-            username: args.refreshArgs.username,
-            password: args.refreshArgs.password,
+    private async loopCallback(refreshArgs: RefreshArgs, skipSleep: boolean = false) {
+        const imgOfUrl = await this.browserPage!.screenshot(refreshArgs.url, {
+            delay: refreshArgs.screenshotDelay,
+            username: refreshArgs.username,
+            password: refreshArgs.password,
         });
         this.logger.log('Waking up display');
-        args.displayDevice?.wake();
-        this.logger.log(`Displaying ${args.refreshArgs.url}`);
-        const dither = args.refreshArgs.dither
-        if (imgOfUrl) await args.displayDevice?.displayPng(imgOfUrl, { dither });
-        args.displayDevice?.sleep();
+        this.displayDevice!.wake();
+        this.logger.log(`Displaying ${refreshArgs.url}`);
+        const dither = refreshArgs.dither
+        await this.displayDevice?.displayPng(imgOfUrl, { dither });
+        if (skipSleep) return; 
+        this.displayDevice!.sleep();
         this.logger.log('Putting display into low power mode');
-        await this.sleep(args.refreshArgs.interval);
+        await this.sleep(refreshArgs.interval);
     }
 
-    private async loopExecutor(args: LoopArgs) {
-        // something wrong with the loops - when loops is undefined it makes one attempt then goes to dispose. 
-        const loops = args.refreshArgs.loops
-        if (loops === undefined) {
-            for (let i = 0; i < 6; i++) {
-                await this.loopCallback(args)
-            }
-        } 
-        else if (loops > 0) {
-            for (let i =0; i < loops; i++) {
-                await this.loopCallback(args)
+    private async loopExecutor(refreshArgs: RefreshArgs, loops: number = 6) {
+        if (loops > 0) {
+            for (let i = 0; i < loops; i++) {
+                await this.loopCallback(refreshArgs, i==loops-1)
             }
         }
         else {
             while (true) {
-               await this.loopCallback(args)
+               await this.loopCallback(refreshArgs)
             }
         }
     }
